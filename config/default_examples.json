@@ -1,0 +1,5 @@
+{
+    "MONGO_URI": "Your mongoDB Atlas",
+    "JWT": "Your jsonwebtoken secret",
+    "githubToken": "Your githubToken"
+}
