@@ -206,7 +206,7 @@ router.put('/education', [auth, [
     check('from', 'Starting date is required').not().isEmpty(),
 ]], async(req, res) => {
     const firstCheck = validationResult(req);
-    if(!firstCheck.isEmpty()) return res.status(400).json({errors: firstCheck.array()});
+    if(!firstCheck.isEmpty()) return res.status(400).json({msg: firstCheck.array()});
     const {
         school,
         degree,

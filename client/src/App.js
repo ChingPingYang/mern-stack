@@ -33,23 +33,23 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <Switch>
             <PublicRoute exact restricted path="/" component={Landing}/>
             <section className="container">
                 <Alert />
-                <PublicRoute restricted path="/login" component={Login}/>
-                <PublicRoute restricted path="/register" component={Register}/>
-                <PublicRoute path="/profiles" component={Profiles}/>
-                <PublicRoute path="/profile/:id" component={Profile}/>
-                <PrivateRoute path="/dashboard" component={Dashboard}/>
-                <PrivateRoute path="/create-profile" component={CreateProfile}/>
-                <PrivateRoute path="/edit-profile" component={EditProfile}/>
-                <PrivateRoute path="/add-experience" component={AddExperience}/>
-                <PrivateRoute path="/add-education" component={AddEducation}/>
-                <PrivateRoute exact path="/posts" component={Posts}/>
-                <PrivateRoute exact path="/posts/:id" component={Post}/>
+                <Switch>
+                  <PublicRoute restricted path="/login" component={Login}/>
+                  <PublicRoute restricted path="/register" component={Register}/>
+                  <PublicRoute path="/profiles" component={Profiles}/>
+                  <PublicRoute path="/profile/:id" component={Profile}/>
+                  <PrivateRoute path="/dashboard" component={Dashboard}/>
+                  <PrivateRoute path="/create-profile" component={CreateProfile}/>
+                  <PrivateRoute path="/edit-profile" component={EditProfile}/>
+                  <PrivateRoute path="/add-experience" component={AddExperience}/>
+                  <PrivateRoute path="/add-education" component={AddEducation}/>
+                  <PrivateRoute exact path="/posts" component={Posts}/>
+                  <PrivateRoute exact path="/posts/:id" component={Post}/>
+                </Switch>
             </section>
-          </Switch>
         </Fragment>
       </Router>
     </Provider>

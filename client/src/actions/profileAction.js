@@ -86,7 +86,7 @@ export const addExperience = (formData, history) => async dispatch => {
         dispatch(setAlert('Experience Added', 'success'));
         history.push('/dashboard');
     } catch(err) {
-        const { errors } = err.response.data;
+        const errors  = err.response.data.msg;
         if(errors) errors.forEach( error => dispatch(setAlert(error.msg, 'danger')));
         dispatch({type: 'PROFILE_ERROR', payload: err.response.data.msg});
     }
@@ -108,7 +108,6 @@ export const addEducation = (formData, history) => async dispatch => {
             'Content-Type': 'application/json'
         }
     }
-    console.log('action', formData)
     const body = JSON.stringify(formData);
     try {
         const res = await axios.put('/api/profile/education', body, config);
@@ -116,9 +115,10 @@ export const addEducation = (formData, history) => async dispatch => {
         dispatch(setAlert('Education Added', 'success'));
         history.push('/dashboard');
     } catch(err) {
-        const { errors } = err.response.data;
+        const errors  = err.response.data.msg;
+        console.log(errors)
         if(errors) errors.forEach( error => dispatch(setAlert(error.msg, 'danger')));
-        dispatch({ type: 'PROFILE_ERROR', payload: err.response.data.msg});
+        dispatch({type: 'PROFILE_ERROR', payload: err.response.data.msg});
     }
 }
 

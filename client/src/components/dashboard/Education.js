@@ -7,7 +7,7 @@ import { deleteEducation } from '../../actions/profileAction';
 function Education({ education, deleteEducation }) {
     const educations = education.map( ed => {
         return (
-            <tr ket={ed._id}>
+            <tr key={ed._id}>
                 <td>{ed.school}</td>
                 <td className="hide-sm">{ed.degree}</td>
                 <td>
