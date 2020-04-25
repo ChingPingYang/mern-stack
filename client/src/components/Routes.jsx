@@ -21,15 +21,15 @@ const Routes = () => {
         <section className="container">
             <Alert />
             <Switch>
-                <PublicRoute restricted path="/login" component={Login}/>
-                <PublicRoute restricted path="/register" component={Register}/>
-                <PublicRoute path="/profiles" component={Profiles}/>
-                <PublicRoute path="/profile/:id" component={Profile}/>
-                <PrivateRoute path="/dashboard" component={Dashboard}/>
-                <PrivateRoute path="/create-profile" component={CreateProfile}/>
-                <PrivateRoute path="/edit-profile" component={EditProfile}/>
-                <PrivateRoute path="/add-experience" component={AddExperience}/>
-                <PrivateRoute path="/add-education" component={AddEducation}/>
+                <PublicRoute exact restricted path="/login" component={Login}/>
+                <PublicRoute exact restricted path="/register" component={Register}/>
+                <PublicRoute exact path="/profiles" component={Profiles}/>
+                <PublicRoute exact path="/profile/:id" component={Profile}/>
+                <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                <PrivateRoute exact path="/create-profile" component={CreateProfile}/>
+                <PrivateRoute exact path="/edit-profile" component={EditProfile}/>
+                <PrivateRoute exact path="/add-experience" component={AddExperience}/>
+                <PrivateRoute exact path="/add-education" component={AddEducation}/>
                 <PrivateRoute exact path="/posts" component={Posts}/>
                 <PrivateRoute exact path="/posts/:id" component={Post}/>
                 <Route component={NotFound}/>
