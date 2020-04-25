@@ -53,7 +53,7 @@ export const addComment = (formData, postId) => async dispatch => {
 
 export const likePost = (postId) => async dispatch => {
     try {
-        const res = await axios.put(`api/posts/like/${postId}`);
+        const res = await axios.put(`/api/posts/like/${postId}`);
         dispatch({ type: 'LIKE_POST', payload: {postId, likes: res.data}})
     } catch(err) {
         dispatch({ type: 'POST_ERROR', payload: { msg: err.response.data.msg, status: err.response.status}})
@@ -62,7 +62,7 @@ export const likePost = (postId) => async dispatch => {
 
 export const unLikePost = (postId) => async dispatch => {
     try{
-        const res = await axios.put(`api/posts/unlike/${postId}`);
+        const res = await axios.put(`/api/posts/unlike/${postId}`);
         dispatch({ type: 'UNLIKE_POST', payload: { postId, likes: res.data}});
     } catch(err) {
         dispatch({ type: 'POST_ERROR', payload: { msg: err.response.data.msg, status: err.response.status}})
