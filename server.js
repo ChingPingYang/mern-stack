@@ -2,7 +2,7 @@ const express = require('express');
 const server = express();
 const PORT = process.env.PORT || 5000;
 const connectDB = require('./config/db');
-const path = express('path');
+const path = require('path');
 
 
 // @ Connect Database
