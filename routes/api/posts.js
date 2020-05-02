@@ -48,8 +48,10 @@ router.get('/:postId', auth, async (req, res) => {
     const postId = req.params.postId;
     try {
         const post = await Post.findById(postId);
+        const user = await User.find().select('_id');
+        const existUser = user.map(user => user._id)
         if(!post) return res.status(404).json({message: 'Post not found.'});
-        return res.json(post);
+        return res.json({post, existUser});
     } catch(err){ 
         if(err.kind === 'ObjectId') {
             res.status(404).json({message: 'Post not found.'});
@@ -169,6 +171,7 @@ router.delete('/comment/:postId/:commentId', auth, async(req, res) => {
         //find the index of comment 
         const commentIndex = post.comments.map(comment => comment._id.toString()).indexOf(req.params.commentId);
         post.comments.splice(commentIndex, 1);
+        
         await post.save()
         res.json(post);
     } catch(err) {

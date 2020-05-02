@@ -126,13 +126,23 @@ router.delete('/', auth, async(req, res) => {
     try {
         // Delete post > first
         await Post.deleteMany({ user: userId });
-        // Delete profile > second
+    
+        // Delete post.comments > second
+        const posts = await Post.find();
+        posts.map(async post => {
+            const newComments = post.comments.filter(comment => comment.user.toString() !== userId);
+            post.comments = newComments;
+            await post.save(); // Cuz 'posts' is an array, so we need to save the post individually.
+        })
+
+        // Delete profile > third
         await Profile.findOneAndRemove({user: userId});
         // Delete user >last... cuz we need user id to delete posts and profile
         await User.findOneAndRemove({_id: userId});
 
         return res.json({msg: 'User deleted...'});
     } catch(err){
+        console.log(err)
         if (err) res.status(500).json({msg: 'Server error...'});
     }
 })
@@ -270,7 +280,6 @@ router.get('/github/:userName', async (req, res) => {
       const gitHubResponse = await axios.get(uri, { headers });
       return res.json(gitHubResponse.data);
     } catch (err) {
-      console.error(err.message);
       return res.status(404).json({ msg: 'No Github profile found' });
     }
   });

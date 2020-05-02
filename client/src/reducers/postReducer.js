@@ -2,6 +2,7 @@ const init = {
     post: null,
     posts: [],
     loading: true,
+    existUser: [],
     error: {}
 }
 
@@ -17,7 +18,8 @@ const postReducer = (state = init, action) => {
         case 'GET_CERTAIN_POSTS':
             return {
                 ...state,
-                post: payload,
+                post: payload.post,
+                existUser: payload.existUser,
                 loading: false
             }
         case 'CREATE_POST':
