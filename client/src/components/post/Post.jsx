@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCertainPost } from '../../actions/postAction';
 
-const Post = ({ getCertainPost, post: { post, loading, existUser}, match }) => {
+const Post = ({ getCertainPost, post: { post, loading }, match }) => {
     useEffect(() => {
         getCertainPost(match.params.id)
     }, [getCertainPost])
@@ -17,18 +17,7 @@ const Post = ({ getCertainPost, post: { post, loading, existUser}, match }) => {
             <Link to="/posts" className="btn">Back To Posts</Link>
             <PostItem post={post} showActions={false}/>
             <CommentForm postId={post._id} />
-            {post.comments.map(comment => {
-                let existed = true;
-                existUser.map(userId => {
-                    if(userId === comment.user) {
-                        existed = false
-                        console.log('changed!')
-                    } 
-                })
-                console.log(existed)
-                return <CommentItem key={comment._id} comment={comment} postId={post._id}/>    
-            } 
-            )}
+            {post.comments.map(comment => <CommentItem key={comment._id} comment={comment} postId={post._id}/>    )}
         </>
     
 }

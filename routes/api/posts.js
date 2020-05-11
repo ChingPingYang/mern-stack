@@ -48,10 +48,8 @@ router.get('/:postId', auth, async (req, res) => {
     const postId = req.params.postId;
     try {
         const post = await Post.findById(postId);
-        const user = await User.find().select('_id');
-        const existUser = user.map(user => user._id)
         if(!post) return res.status(404).json({message: 'Post not found.'});
-        return res.json({post, existUser});
+        return res.json(post);
     } catch(err){ 
         if(err.kind === 'ObjectId') {
             res.status(404).json({message: 'Post not found.'});
