@@ -1,0 +1,5 @@
+{
+    "MONGO_URI": "mongodb+srv://as00999829:as00999829@cluster0-mba6s.azure.mongodb.net/mern-stack?retryWrites=true&w=majority",
+    "JWT": "mySecretToken",
+    "githubToken": "8a325cb7175b25c02641539c9621824a88c81e5f"
+}
